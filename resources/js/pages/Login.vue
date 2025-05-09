@@ -15,7 +15,6 @@ const login = () => {
     axios.post('/login', form.value)
         .then(response => {
             const res = response.data.data;
-            console.log(res)
         if (res.token) {
             store.setToken(res.token);
             store.setUser(res.user);
@@ -29,7 +28,6 @@ const login = () => {
                 errors.value = res.errors
             } else {
                 errors.value=null
-                console.log(res)
                 Toast.fire({icon: 'error', title: res.data.error })
             }
         })
