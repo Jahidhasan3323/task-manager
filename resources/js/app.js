@@ -8,7 +8,6 @@ import router from './router';
 import { createPinia } from 'pinia'
 import Swal from 'sweetalert2';
 import ApiService from "@/apiClient.js";
-import store from "@/store/store.js";
 
 window.Toast = Swal.mixin({
     toast: true,
@@ -34,7 +33,8 @@ router.beforeEach((to, from, next) => {
                 next()
             }).catch(error => {
                 //if token is not valid destroy token
-                store.logout();
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
                 next('/login')
             })
         }
